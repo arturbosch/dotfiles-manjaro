@@ -7,3 +7,4 @@ Changes from standard manjaro i3 config:
 - poweroff menu is now mod+period
 - lock is mod+slash or mod+period -> period
 - added two workspaces 9+10
+- mod+F2 opens vivaldi browser, mod F3 pcmanfm
