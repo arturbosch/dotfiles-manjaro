@@ -8,3 +8,4 @@ Changes from standard manjaro i3 config:
 - lock is mod+slash or mod+period -> period
 - added two workspaces 9+10
 - mod+F2 opens vivaldi browser, mod F3 pcmanfm
+- mod+Shift+Return opens fish
