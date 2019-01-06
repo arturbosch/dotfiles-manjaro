@@ -5,7 +5,8 @@
 set $mod Mod4
 
 # set default desktop layout (default is tiling)
-# workspace_layout tabbed <stacking|tabbed>
+workspace_layout tabbed
+#<stacking|tabbed>
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 new_window pixel 1
@@ -27,41 +28,47 @@ font xft:Noto Sans 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec terminal
-bindsym $mod+Shift+Return exec terminal -e 'fish'
+bindsym $mod+Return exec kitty
+# bindsym $mod+Shift+Return exec kitty -e 'fish'
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start program launcher
-bindsym $mod+d exec --no-startup-id dmenu_recency
+# start program launcher#bindsym $mod+d exec --no-startup-id dmenu_recency
+bindsym $mod+d exec --no-startup-id "rofi -modi window,drun,run -show drun"
+bindsym $mod+x exec --no-startup-id "rofi -modi window,drun,run -show window"
 
-# launch categorized menu
-bindsym $mod+z exec --no-startup-id morc_menu
-
-################################################################################################
-## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
-################################################################################################
-
-exec --no-startup-id volumeicon
-bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
-#exec --no-startup-id pulseaudio
-#exec --no-startup-id pa-applet
-#bindsym $mod+Ctrl+m exec pavucontrol
+# sound
+exec --no-startup-id start-pulseaudio-x11
+bindsym $mod+Ctrl+m exec pavucontrol
 
 ################################################################################################
 
 # Screen brightness controls
-# bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
-# bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
+bindsym XF86MonBrightnessUp exec "light -A 10"
+bindsym XF86MonBrightnessDown exec "light -U 10"
+
+# Music player keys
+# ncmpcpp
+bindsym XF86AudioPlay exec mpc toggle
+bindsym XF86AudioNext exec mpc next
+bindsym XF86AudioPrev exec mpc prev
+# mocp
+# bindsym XF86AudioPlay exec mocp --toggle-pause
+# bindsym XF86AudioNext exec mocp --next
+# bindsym XF86AudioPrev exec mocp --previous
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 # Start Applications
-bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
-bindsym $mod+F2 exec vivaldi-stable
-bindsym $mod+F3 exec pcmanfm
-# bindsym $mod+F3 exec ranger
-bindsym $mod+Shift+F3 exec gksu pcmanfm
-bindsym $mod+F5 exec terminal -e 'mocp'
+bindsym $mod+F2 exec firefox
+bindsym $mod+F3 exec kitty ranger
+bindsym $mod+Shift+F3 exec pcmanfm
+bindsym $mod+F5 exec kitty m
+bindsym $mod+F10 exec blueman-manager
 bindsym $mod+t exec --no-startup-id pkill compton
 bindsym $mod+Ctrl+t exec --no-startup-id compton -b
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
@@ -71,7 +78,7 @@ bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
 bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
-# focus_follows_mouse no
+focus_follows_mouse no
 
 # change focus
 bindsym $mod+j focus left
@@ -190,11 +197,13 @@ bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws0; workspace $ws0
 
 # Open applications on specific workspaces
-assign [class="Thunderbird"] $ws8
 assign [class="Vivaldi"] $ws1
+assign [class="Firefox"] $ws1
 assign [class="idea"] $ws2
-# assign [class="Pcmanfm"] $ws3
+assign [class="Atom"] $ws4
+assign [class="Pcmanfm"] $ws4
 assign [class="Tinbo"] $ws7
+assign [class="Thunderbird"] $ws8
 # assign [class="Skype"] $ws5
 
 # Open specific applications in floating mode
@@ -220,11 +229,13 @@ for_window [class="qt5ct"] floating enable sticky enable border normal
 for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
 for_window [class="Simple-scan"] floating enable border normal
 for_window [class="(?i)System-config-printer.py"] floating enable border normal
-for_window [class="Skype"] floating enable border normal
+#for_window [class="Skype"] floating enable border normal
 for_window [class="Thus"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
+for_window [class="^jetbrains-.+"][window_type=dialog] focus
+for_window [instance="sun-awt-X11-XWindowPeer"] border pixel 0
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
@@ -242,14 +253,14 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym $mod+period mode "$mode_system"
 set $mode_system (.)lock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
-    bindsym period exec --no-startup-id i3exit lock, mode "default"
-    bindsym $mod+period exec --no-startup-id i3exit lock, mode "default"
-    bindsym s exec --no-startup-id i3exit suspend, mode "default"
-    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
-    bindsym e exec --no-startup-id i3exit logout, mode "default"
-    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
-    bindsym r exec --no-startup-id i3exit reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+    bindsym period exec --no-startup-id betterlockscreen --lock blur, mode "default"
+    bindsym $mod+period exec --no-startup-id betterlockscreen --lock blur, mode "default"
+    bindsym s exec --no-startup-id systemctl suspend, mode "default"
+    bindsym u exec --no-startup-id i3-msg exit, mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym h exec --no-startup-id systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff, mode "default"
 
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
@@ -284,114 +295,53 @@ mode "resize" {
 bindsym $mod+slash exec --no-startup-id blurlock
 
 # Autostart applications
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id nitrogen --restore; sleep 1; compton -b
-#exec --no-startup-id manjaro-hello
-exec --no-startup-id nm-applet
-exec --no-startup-id xfce4-power-manager
-exec --no-startup-id pamac-tray
-exec --no-startup-id clipit
+## wallpaper
+exec --no-startup-id feh --bg-fill /home/abosch/Pictures/desktop/winter-wallpaper-24.jpg
+## safe battery time
+exec --no-startup-id gksu tlp start
+## auto mount usb drives
+exec --no-startup-id udiskie -2 -s &
+
+# exec --no-startup-id nitrogen --restore; sleep 1; compton -b
+# exec --no-startup-id clipit
 # exec --no-startup-id blueman
-# exec_always --no-startup-id sbxkb
-exec --no-startup-id start_conky_maia
-# exec --no-startup-id start_conky_green
-exec --no-startup-id xautolock -time 10 -locker blurlock
-exec_always --no-startup-id fix_xcursor
+# exec --no-startup-id conky -c ~/.config/conky
+# exec --no-startup-id xautolock -time 60 -locker blurlock
+# exec_always --no-startup-id fix_xcursor
+# exec --no-startup-id emacs --daemon
+# exec --no-startup-id /home/abosch/gogs/./gogs web
+# exec --no-startup-id redshift -l geoclue2
 
-# Start i3bar to display a workspace bar (plus the system information i3status if available)
+exec --no-startup-id i3-msg 'workspace $ws1; exec /usr/bin/firefox'
+# exec --no-startup-id i3-msg 'workspace $ws2; exec /home/abosch/bin/idea'
+exec --no-startup-id i3-msg 'workspace $ws3; exec /usr/bin/kitty'
+exec --no-startup-id i3-msg 'workspace $ws7; exec /usr/bin/kitty /home/abosch/bin/tinbo'
+# exec --no-startup-id i3-msg 'workspace $ws8; exec /usr/bin/thunderbird'
+# exec --no-startup-id i3-msg 'workspace $ws9; exec /usr/bin/kitty -e htop'
+
+# bumblebee-status
+# bar {
+#	font xft:Cantarell 12
+#	position bottom
+#	tray_output none
+#	status_command bumblebee-status -m nic disk:root cpu memory battery pasink pasource brightness date time -p root.path=/ time.format="%H:%M CW %V" date.format="%a, %b %d %Y" -t iceberg
+#}
+
 bar {
-	status_command i3status
+	font xft:Cantarell, FontAwesome 12
 	position bottom
-
-## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-#	tray_output primary
-#	tray_output eDP1
-
-	bindsym button4 nop
-	bindsym button5 nop
-	font xft:Noto Sans 10.5
-	strip_workspace_numbers yes
-
+	tray_output none
+	status_command $HOME/bin/i3status-rs /home/abosch/.config/i3/status.toml
 	colors {
-#       background $transparent
-        background #2B2C2B
-        statusline #F9FAF9
-        separator  #454947
-
-#                                  border  backgr. text
-        focused_workspace  #F9FAF9 #16A085 #2B2C2B
-        active_workspace   #595B5B #353836 #FDF6E3
-        inactive_workspace #595B5B #353836 #EEE8D5
-        urgent_workspace   #16A085 #FDF6E3 #E5201D
+        separator #666666
+        background #222222
+        statusline #222222
+        focused_workspace #0088CC #0088CC #ffffff
+        active_workspace #333333 #333333 #ffffff
+        inactive_workspace #333333 #333333 #888888
+        urgent_workspace #2f343a #900000 #ffffff
     }
 }
 
 # hide/unhide i3status bar
 bindsym $mod+m bar mode toggle
-
-# Theme colors
-# class                 border  backgr. text    indic.  child_border
-client.focused          #808280 #808280 #80FFF9 #FDF6E3
-client.focused_inactive #434745 #434745 #16A085 #454948
-client.unfocused        #434745 #434745 #16A085 #454948
-client.urgent           #CB4B16 #FDF6E3 #16A085 #268BD2
-client.placeholder      #000000 #0c0c0c #ffffff #000000 #0c0c0c
-
-client.background       #2B2C2B
-
-#############################
-### settings for i3-gaps: ###
-#############################
-
-# Set inner/outer gaps
-gaps inner 2
-gaps outer -4
-
-# Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
-# gaps inner|outer current|all set|plus|minus <px>
-# gaps inner all set 10
-# gaps outer all plus 5
-
-# Smart gaps (gaps used if only more than one container on the workspace)
-smart_gaps on
-
-# Smart borders (draw borders around container only if it is not the only container on this workspace) 
-# on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
-smart_borders on
-
-# Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
-set $mode_gaps Gaps: (o) outer, (i) inner
-set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
-set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
-bindsym $mod+Shift+g mode "$mode_gaps"
-
-mode "$mode_gaps" {
-        bindsym o      mode "$mode_gaps_outer"
-        bindsym i      mode "$mode_gaps_inner"
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-mode "$mode_gaps_inner" {
-        bindsym plus  gaps inner current plus 5
-        bindsym minus gaps inner current minus 5
-        bindsym 0     gaps inner current set 0
-
-        bindsym Shift+plus  gaps inner all plus 5
-        bindsym Shift+minus gaps inner all minus 5
-        bindsym Shift+0     gaps inner all set 0
-
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-mode "$mode_gaps_outer" {
-        bindsym plus  gaps outer current plus 5
-        bindsym minus gaps outer current minus 5
-        bindsym 0     gaps outer current set 0
-
-        bindsym Shift+plus  gaps outer all plus 5
-        bindsym Shift+minus gaps outer all minus 5
-        bindsym Shift+0     gaps outer all set 0
-
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
