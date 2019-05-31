@@ -127,16 +127,6 @@ function! NumberToggle()
   endif
 endfunc
 
-" Commenting blocks of code.
-" autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
-" autocmd FileType sh,ruby,python   let b:comment_leader = '# '
-"autocmd FileType conf,fstab       let b:comment_leader = '# '
-"autocmd FileType tex              let b:comment_leader = '% '
-"autocmd FileType mail             let b:comment_leader = '> '
-"autocmd FileType vim              let b:comment_leader = '" '
-"nmap <silent><leader>/ :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
-"nmap <silent><leader>? :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
-   
 " Key mappings
 nnoremap <leader>tn :call NumberToggle()<cr>
 nmap <silent><leader>/ <Plug>NERDCommenterToggle
@@ -148,9 +138,6 @@ nnoremap <C-o> :FZF<cr>
 nnoremap <leader>d yyp
 nnoremap <leader>k dd
 nnoremap <leader>l :nohlsearch<cr>
-" nnoremap <leader>q :q<cr>
-" nnoremap <leader>Q :q!<cr>
-" nnoremap <leader>s :w<cr>
 nnoremap <C-q> :q<cr>
 nnoremap <C-s> :w<cr>
 "" better movement for wrapped lines
@@ -244,5 +231,6 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y> " : "\<C-g>u\<CR>"
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
+" show coc diagnostics in statusline
 let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
 let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
