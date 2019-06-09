@@ -25,10 +25,11 @@ Plug 'scrooloose/nerdcommenter'
 " show whitespaces and quick fix
 Plug 'ntpeters/vim-better-whitespace'
 
-" git stuffn 'mileszs/ack.vim'
+" git stuff
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
+Plug 'rhysd/git-messenger.vim'
 
 " file content search like grep
 Plug 'mileszs/ack.vim'
@@ -39,6 +40,7 @@ Plug 'terryma/vim-multiple-cursors'
 " language server support & languages
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
 Plug 'udalov/kotlin-vim'
+Plug 'dag/vim-fish'
 
 call plug#end()
 
@@ -134,10 +136,11 @@ vmap <silent><leader>/ <Plug>NERDCommenterToggle
 nnoremap <leader>sw :StripWhitespace<cr>
 nnoremap <leader>tt :NERDTreeToggle<cr>
 nnoremap <leader>o :FZF<cr>
-nnoremap <C-o> :FZF<cr>
+nnoremap <C-p> :FZF<cr>
 nnoremap <leader>d yyp
 nnoremap <leader>k dd
 nnoremap <leader>l :nohlsearch<cr>
+nnoremap <leader>Q :q!<cr>
 nnoremap <C-q> :q<cr>
 nnoremap <C-s> :w<cr>
 "" better movement for wrapped lines
@@ -153,6 +156,9 @@ inoremap <M-down> <Esc>:m +1<CR>i
 " next/previous buffers
 nmap <silent> ]b :bnext<cr>
 nmap <silent> [b :bprev<cr>
+" next/previous cursors
+nmap <silent> <C-A-left> <C-o>
+nmap <silent> <C-A-right> <C-i>
 
 " Use ';' for commands.
 nnoremap ; :
@@ -167,7 +173,7 @@ nnoremap <silent> <leader>cw vey
 inoremap <silent> <C-v> <Esc>pa
 
 " language server actions
-nnoremap <silent> <leader>gd <Plug>(coc-definition)
+nmap <silent> <leader>gd <Plug>(coc-definition)
 nmap <silent> <leader>gu <Plug>(coc-references)
 nmap <silent> <leader>gi <Plug>(coc-implementation)
 nmap <silent> <leader>gt <Plug>(coc-type-definition)
@@ -176,8 +182,8 @@ nmap <silent> <leader>fs <Plug>(coc-format-selected)
 vmap <silent> <leader>fs <Plug>(coc-format-selected)
 
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-vnoremap <leader>a <Plug>(coc-codeaction-selected)
-nnoremap <leader>a <Plug>(coc-codeaction-selected)
+vmap <leader>a <Plug>(coc-codeaction-selected)
+nmap <leader>a <Plug>(coc-codeaction-selected)
 
 " Use `[d` and `]d` for navigate diagnostics
 nmap <silent> [d <Plug>(coc-diagnostic-prev)
@@ -190,6 +196,12 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 command! -nargs=0 Format :call CocAction('format')
 " Format whole file
 nmap <leader>ff ;Format<cr>
+
+" Show signature
+nnoremap <silent> <expr> <leader>gsh CocAction('showSignatureHelp')
+
+" Show type
+nnoremap <silent> <expr> <leader>gh CocAction('doHover')
 
 " Using CocList
 "Show all diagnostics
