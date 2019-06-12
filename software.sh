@@ -20,7 +20,6 @@ sudo pacman -S lsof git youtube-dl htop udisks2 wget fuse2 alacritty exa ripgrep
 echo "Installing fish"
 sudo pacman -S fish
 sudo chsh $(users | head)
-fish
 curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
 fisher add jethrokuan/fzf jethrokuan/z matchai/spacefish reitzig/sdkman-for-fish
 
