@@ -2,8 +2,8 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $homebin "/home/abosch/bin"
-set $term alacritty
-set $altterm st
+set $altterm alacritty
+set $term st
 
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
