@@ -13,14 +13,17 @@ echo "Installing archive extract tools"
 sudo pacman -S xarchiver p7zip zip unzip unrar
 
 echo "Installing software"
-sudo pacman -S lsof git youtube-dl htop udisks2 wget fuse2 alacritty exa ripgrep fd neofetch tokei nnn fzf udiskie ntfs-3g lxappearance lxrandr tig xdg-utils alsa-utils moc findutils rofi feh redshift powertop tlp
+sudo pacman -S lsof git youtube-dl htop udisks2 wget fuse2 alacritty exa ripgrep fd neofetch tokei nnn fzf udiskie ntfs-3g lxappearance lxrandr tig xdg-utils alsa-utils moc findutils rofi feh redshift powertop tlp pcmanfm iw compton dunst
+
+echo "Installing sound"
+sudo pacman -S pulseaudio pavucontrol pamixer
+
+echo "Installing vim plugin manager"
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 echo "Installing fish"
 sudo pacman -S fish
 sudo chsh $(users | head)
-curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
-fisher add jethrokuan/fzf jethrokuan/z matchai/spacefish reitzig/sdkman-for-fish
 
 echo "Installing browsers"
 sudo pacman -S firefox surf

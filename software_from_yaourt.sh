@@ -9,3 +9,5 @@ yaourt zjump
 yaourt pywal
 yaourt udisksctl
 yaourt gksu
+yaourt fisher
+fisher add jethrokuan/fzf jethrokuan/z matchai/spacefish reitzig/sdkman-for-fish
