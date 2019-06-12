@@ -14,8 +14,7 @@ sudo pacman -S xarchiver p7zip zip unzip unrar
 
 echo "Installing software"
 sudo pacman -S lsof git youtube-dl htop udisks2 wget fuse2 alacritty exa ripgrep fd neofetch tokei nnn fzf udiskie ntfs-3g lxappearance lxrandr tig xdg-utils alsa-utils moc findutils rofi feh redshift powertop tlp
-
-# zjump pywal udisksctl gksu
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 echo "Installing fish"
 sudo pacman -S fish
@@ -46,21 +45,3 @@ sdk i gradle
 sdk i maven
 sdk i groovy
 
-echo "Installing yaourt"
-cd /tmp
-git clone https://aur.archlinux.org/package-query.git
-cd package-query
-makepkg -s
-sudo pacman -U package-query-*.pkg.tar.xz
-cd ..
-git clone https://aur.archlinux.org/yaourt.git
-cd yaourt/
-makepkg -s
-sudo pacman -U yaourt-*.pkg.tar.xz
-
-echo "From Yaourt"
-yaourt betterlockscreen
-yaourt redshift-qt
-yaourt light-git # number 9
-yaourt gnome-breeze-git
-yaourt arc-icon-theme-git
