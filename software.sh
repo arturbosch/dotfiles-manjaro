@@ -13,12 +13,15 @@ echo "Installing archive extract tools"
 sudo pacman -S xarchiver p7zip zip unzip unrar
 
 echo "Installing software"
-sudo pacman -S lsof git youtube-dl htop udisksctl udisks2 wget fuse2 gksu alacritty exa ripgrep fd neofetch tokei nnn fzf zjump pywal udiskie ntfs-3g lxappearance lxrandr tig xdg-utils alsa-utils moc findutils rofi feh redshift powertop tlp
+sudo pacman -S lsof git youtube-dl htop udisks2 wget fuse2 alacritty exa ripgrep fd neofetch tokei nnn fzf udiskie ntfs-3g lxappearance lxrandr tig xdg-utils alsa-utils moc findutils rofi feh redshift powertop tlp
+
+# zjump pywal udisksctl gksu
 
 echo "Installing fish"
-sudo pacman -S fish fisherman
+sudo pacman -S fish
 sudo chsh $(users | head)
 fish
+curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
 fisher add jethrokuan/fzf jethrokuan/z matchai/spacefish reitzig/sdkman-for-fish
 
 echo "Installing browsers"
