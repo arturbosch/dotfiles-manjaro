@@ -1,7 +1,7 @@
 # i3 config file (v4)
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-set $homebin "/home/abosch/bin"
+set $homebin "$HOME/bin"
 set $altterm alacritty
 set $term st
 
@@ -301,7 +301,7 @@ bindsym $mod+slash exec --no-startup-id blurlock
 
 # Autostart applications
 ## wallpaper
-exec --no-startup-id feh --bg-fill /home/abosch/Pictures/desktop/winter-wallpaper-24.jpg
+exec --no-startup-id feh --bg-fill $HOME/Pictures/desktop.jpg
 ## safe battery time
 exec --no-startup-id i3-msg 'workspace $ws3; exec exec $term -e "$homebin/turn_off_gpu.sh"
 # exec --no-startup-id gksu tlp start
@@ -314,7 +314,7 @@ exec --no-startup-id compton -b
 exec --no-startup-id setxkbmap -option caps:escape
 
 exec --no-startup-id i3-msg 'exec /usr/bin/firefox'
-#exec --no-startup-id i3-msg 'exec /home/abosch/bin/idea'
+#exec --no-startup-id i3-msg 'exec $HOME/bin/idea'
 #exec --no-startup-id i3-msg 'exec $term'
 #exec --no-startup-id i3-msg 'exec exec $term -e $homebin/tinbo'
 #exec --no-startup-id i3-msg 'exec thunderbird'
@@ -333,7 +333,7 @@ bar {
 	font xft:Cantarell, FontAwesome 12
 	position bottom
 	tray_output none
-	status_command $HOME/bin/i3status-rs /home/abosch/.config/i3/status.toml
+	status_command $HOME/bin/i3status-rs $HOME/.config/i3/status.toml
 	colors {
         separator #666666
         background #222222
