@@ -10,4 +10,4 @@ yaourt pywal
 yaourt udisksctl
 yaourt gksu
 yaourt fisher
-fisher add jethrokuan/fzf jethrokuan/z matchai/spacefish reitzig/sdkman-for-fish
+fisher add jethrokuan/fzf jethrokuan/z brandonweiss/pure.fish reitzig/sdkman-for-fish
