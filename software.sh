@@ -13,7 +13,7 @@ echo "Installing archive extract tools"
 sudo pacman -S xarchiver p7zip zip unzip unrar
 
 echo "Installing software"
-sudo pacman -S lsof git youtube-dl htop udisks2 wget fuse2 alacritty exa ripgrep fd neofetch tokei nnn fzf udiskie ntfs-3g lxappearance lxrandr tig xdg-utils alsa-utils moc findutils rofi feh redshift powertop tlp pcmanfm iw compton dunst evince viewnior
+sudo pacman -S lsof git youtube-dl htop udisks2 wget fuse2 alacritty exa ripgrep fd neofetch tokei nnn fzf udiskie ntfs-3g lxappearance lxrandr tig xdg-utils alsa-utils moc findutils rofi feh redshift powertop tlp pcmanfm iw compton dunst evince viewnior openssh openvpn
 
 echo "Installing sound"
 sudo pacman -S pulseaudio pavucontrol pamixer alsa-plugins pulseaudio-alsa
@@ -29,6 +29,8 @@ echo "Installing browsers"
 sudo pacman -S firefox surf
 
 echo "Installing additional dev tools"
+sudo pacman -S python python-pip
+pip install --user pytest
 sudo pacman -S neovim nodejs yarn
 sudo pacman -S rustup
 rustup default stable
