@@ -2,6 +2,7 @@ call plug#begin("~/.config/nvim/plugged")
 
 " dark theme with some purple
 Plug 'drewtempelmeyer/palenight.vim'
+Plug 'blueshirts/darcula', { 'as': 'darcula' }
 
 " fuzzy search
 Plug 'junegunn/fzf'
@@ -56,7 +57,7 @@ let g:better_whitespace_enabled=0
 
 " theming, must be after plugins are applied
 set background=dark
-colorscheme palenight
+colorscheme darcula
 
 " show line numbers in ruler
 set number
