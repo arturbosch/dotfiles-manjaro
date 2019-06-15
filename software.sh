@@ -2,7 +2,7 @@ echo "Installing xorg"
 sudo pacman -S xorg-server xorg-init
 
 echo "Installing i3"
-sudo pacman -S i3-gaps i3status dmenu
+sudo pacman -S i3-gaps i3status i3-scrot dmenu
 echo "exec i3" > ~/.xinitrc
 
 echo "Installing lightdm"
