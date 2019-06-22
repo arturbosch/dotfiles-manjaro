@@ -11,4 +11,4 @@ yaourt udisksctl
 yaourt gksu
 yaourt downgrader
 yaourt fisher
-fisher add jethrokuan/fzf jethrokuan/z brandonweiss/pure.fish reitzig/sdkman-for-fish
+fisher add jethrokuan/fzf jethrokuan/z fishpkg/fish-prompt-mono reitzig/sdkman-for-fish
