@@ -34,22 +34,22 @@ abbr loc "tokei -f --sort=lines"
 abbr md "mkdir -pv"
 abbr rd "rm -R"
 abbr nf "clear && neofetch"
-abbr g gradle
-abbr gw "./gradlew"
-abbr gwb "./gradlew build"
-abbr gwcb "./gradlew clean build"
-abbr gwbp "./gradlew build publishToMavenLocal"
-abbr gb gradle build
-abbr gcb gradle clean build
-abbr gbp gradle build publishToMavenLocal
-abbr gd gradle detekt
+abbr g "./gradlew"
+abbr gv "./gradlew -v"
+abbr gdeps "./gradlew -q dependencies --configuration implementation"
+abbr gb "./gradlew build"
+abbr gcb "./gradlew clean build"
+abbr gbp "./gradlew build publishToMavenLocal"
+abbr gd "./gradlew detekt"
 abbr nb "netbeans -J-Dswing.aatext=true -J-Dawt.useSystemAAFontSettings=lcd"
 abbr f "cd ~/Files && ls ~/Files/ | dmenu -l 30"
 abbr eff "$EDITOR (cd ~/.config/fish/functions && ls | dmenu -l 30)"
 abbr ff "cat (cd ~/Files && ls ~/Files/ | dmenu -l 30)"
 abbr fm "mplayer -geometry 25%:25% -loop 0 -fixed-vo -nofs -xineramascreen 1 -playlist (cd ~/Music/playlists && ls ~/Music/playlists | dmenu -l 30)"
 abbr fe "$EDITOR (cd ~/Files && ls ~/Files/ | dmenu -l 30)"
-abbr jrun "java -jar"
+abbr j "java"
+abbr jj "java -jar"
+abbr jv java -version
 abbr asp "create_playlist"
 abbr fixpacman "rm /var/lib/pacman/db.lck"
 
@@ -71,6 +71,7 @@ alias lt "exa --tree"
 # misc aliases
 alias dl "youtube-dl -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0"
 alias jshell "$HOME/.sdkman/candidates/java/11.0.2-open/bin/jshell"
+alias lazy "java -jar -Xmx50m ~/Tools/lazy.jar"
 alias mm "java -jar -Xmx50m ~/Tools/mm.jar"
 alias mmx "java -XX:TieredStopAtLevel=1 -XX:CICompilerCount=1 -XX:+UseSerialGC -Xshare:on -XX:-UsePerfData -Xmx20m -Xms20m -jar ~/Tools/mm.jar"
 
@@ -120,3 +121,12 @@ function create_playlist
         echo "Usage: [directory name] [playlist name] (playlist is stored in ($HOME/Music/playlists)"
     end
 end
+
+## fzf git add support
+bind \cga git-add-fzf
+bind -M insert \cga git-add-fzf
+function git-add-fzf
+    git add (git ls-files --modified --exclude-standard | fzf --ansi --no-sort --preview 'git diff --color=always -- {}')
+end
+
+
