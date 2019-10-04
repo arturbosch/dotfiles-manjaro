@@ -2,7 +2,7 @@
 	email = arturbosch@gmx.de
 	name = Artur Bosch
 [pull]
-	rebase = false
+	rebase = true
 [core]
 	autocrlf = input
 	editor = nvim
