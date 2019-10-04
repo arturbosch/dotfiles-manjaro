@@ -29,7 +29,7 @@ abbr ecoc "$EDITOR $HOME/git/dotfiles/nvim/coc-settings.json"
 ## other shortcuts
 abbr gl tig
 if test (uname -a | grep 'Ubuntu')
-    abbr fd fdfind
+    alias fd fdfind
 end
 abbr loc "tokei -f --sort=lines"
 abbr md "mkdir -pv"
@@ -54,7 +54,11 @@ abbr jv "java -version"
 abbr asp "create_playlist"
 abbr fixpacman "rm /var/lib/pacman/db.lck"
 
-# pacman
+# installer
+## apt
+abbr inst "sudo apt install"
+abbr fp "sudo apt search"
+## pacman
 abbr p "sudo pacman"
 abbr pmi "sudo pacman -S"
 abbr pms "pacman -Ss"
