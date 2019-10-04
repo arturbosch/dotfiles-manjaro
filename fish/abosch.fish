@@ -28,6 +28,9 @@ abbr ecoc "$EDITOR $HOME/git/dotfiles/nvim/coc-settings.json"
 
 ## other shortcuts
 abbr gl tig
+if test (uname -a | grep 'Ubuntu')
+    abbr fd fdfind
+end
 abbr loc "tokei -f --sort=lines"
 abbr md "mkdir -pv"
 abbr rd "rm -R"
