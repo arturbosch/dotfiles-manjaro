@@ -18,13 +18,15 @@ set VISUAL nvim
 # aliases && abbreveations
 abbr e $EDITOR
 abbr vim nvim
+abbr vi nvim
+alias brave-browser=brave
 
 ## config shortcuts
-abbr ef "$EDITOR $HOME/git/dotfiles/fish/abosch.fish"
-abbr ei "$EDITOR $HOME/git/dotfiles/i3/config"
-abbr ev "$EDITOR $HOME/git/dotfiles/nvim/init.vim"
-abbr eg "$EDITOR $HOME/git/dotfiles/.gitconfig"
-abbr ecoc "$EDITOR $HOME/git/dotfiles/nvim/coc-settings.json"
+abbr ef "$EDITOR $HOME/.dotfiles/fish/abosch.fish"
+abbr ei "$EDITOR $HOME/.dotfiles/i3/config"
+abbr ev "$EDITOR $HOME/.dotfiles/nvim/init.vim"
+abbr eg "$EDITOR $HOME/.dotfiles/.gitconfig"
+abbr ecoc "$EDITOR $HOME/.dotfiles/nvim/coc-settings.json"
 
 ## other shortcuts
 abbr gl tig
@@ -40,9 +42,9 @@ abbr gw "./gradlew"
 abbr gv "gradle -v"
 abbr gdeps "gradle -q dependencies --configuration implementation"
 abbr gb "gradle build"
-abbr gcb "gradlew clean build"
-abbr gbp "gradlew build publishToMavenLocal"
-abbr gd "gradlew detekt"
+abbr gcb "gradle clean build"
+abbr gbp "gradle build publishToMavenLocal"
+abbr gd "gradle detekt"
 abbr f "cd ~/files && ls ~/files/ | dmenu -l 30"
 abbr eff "$EDITOR (cd ~/.config/fish/functions && ls | dmenu -l 30)"
 abbr ff "cat (cd ~/files && ls ~/files/ | dmenu -l 30)"
@@ -51,13 +53,14 @@ abbr fe "$EDITOR (cd ~/files && ls ~/files/ | dmenu -l 30)"
 abbr j "java"
 abbr jj "java -jar"
 abbr jv "java -version"
-abbr asp "create_playlist"
 abbr fixpacman "rm /var/lib/pacman/db.lck"
 
 # installer
 ## apt
-abbr inst "sudo apt install"
-abbr fp "sudo apt search"
+if test (uname -a | grep 'Ubuntu')
+    abbr inst "sudo apt install"
+    abbr fp "sudo apt search"
+end
 ## pacman
 abbr p "sudo pacman"
 abbr pmi "sudo pacman -S"

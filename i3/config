@@ -2,8 +2,8 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $homebin "$HOME/bin"
-set $altterm alacritty
-set $term st
+set $altterm st
+set $term alacritty
 
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
@@ -53,12 +53,6 @@ bindsym XF86MonBrightnessUp exec "light -A 10"
 bindsym XF86MonBrightnessDown exec "light -U 10"
 
 # Music player keys
-# ncmpcpp
-#bindsym XF86AudioPlay exec mpc toggle
-#bindsym XF86AudioNext exec mpc next
-#bindsym XF86AudioPrev exec mpc prev
-
-# mocp
 bindsym XF86AudioPlay exec mocp --toggle-pause
 bindsym XF86AudioNext exec mocp --next
 bindsym XF86AudioPrev exec mocp --previous
@@ -69,9 +63,9 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pamixer -d 5
 bindsym XF86AudioMute exec --no-startup-id pamixer -t
 
 # Start Applications
-bindsym $mod+F2 exec firefox
-bindsym $mod+F3 exec exec $term -e ranger
-bindsym $mod+Shift+F3 exec pcmanfm
+bindsym $mod+F2 exec brave
+bindsym $mod+F3 exec pcmanfm
+bindsym $mod+Shift+F3 exec exec $term -e ranger
 bindsym $mod+F5 exec exec $term -e mocp
 bindsym $mod+F6 exec arandr
 bindsym $mod+F7 exec exec $term -e $homebin/tinbo
@@ -81,10 +75,9 @@ bindsym $mod+F10 exec exec $term -e "$homebin"/blue
 bindsym $mod+t exec --no-startup-id pkill compton
 bindsym $mod+Ctrl+t exec --no-startup-id compton -b
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
-bindsym Print exec --no-startup-id i3-scrot
-bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
-bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
-bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
+bindsym Print exec --no-startup-id scrot
+bindsym $mod+Print --release exec --no-startup-id scrot -w
+bindsym $mod+Shift+Print --release exec --no-startup-id scrot -s
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
 focus_follows_mouse no
@@ -202,14 +195,10 @@ bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws0; workspace $ws0
 
 # Open applications on specific workspaces
-assign [class="Vivaldi"] $ws1
 assign [class="Firefox"] $ws1
-# assign [class="idea"] $ws2
-assign [class="Atom"] $ws4
+assign [class="Brave"] $ws1
 assign [class="Pcmanfm"] $ws4
-assign [class="Tinbo"] $ws7
 assign [class="Thunderbird"] $ws8
-# assign [class="Skype"] $ws5
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
@@ -234,7 +223,6 @@ for_window [class="qt5ct"] floating enable sticky enable border normal
 for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
 for_window [class="Simple-scan"] floating enable border normal
 for_window [class="(?i)System-config-printer.py"] floating enable border normal
-#for_window [class="Skype"] floating enable border normal
 for_window [class="Thus"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
@@ -303,7 +291,7 @@ bindsym $mod+slash exec --no-startup-id blurlock
 ## wallpaper
 exec --no-startup-id feh --bg-fill $HOME/Pictures/desktop.jpg
 ## safe battery time
-exec --no-startup-id i3-msg 'workspace $ws3; exec exec $term -e "$homebin/turn_off_gpu.sh"
+exec --no-startup-id i3-msg 'workspace $ws3; exec exec $term -e "$homebin/power.sh"
 # exec --no-startup-id gksu tlp start
 ## auto mount usb drives
 exec --no-startup-id udiskie -2 -s &
@@ -312,28 +300,16 @@ exec --no-startup-id redshift-qt
 exec --no-startup-id compton -b
 ## remap caps to escape
 exec --no-startup-id setxkbmap -option caps:escape
-
-exec --no-startup-id i3-msg 'exec /usr/bin/firefox'
-#exec --no-startup-id i3-msg 'exec $HOME/bin/idea'
-#exec --no-startup-id i3-msg 'exec $term'
-#exec --no-startup-id i3-msg 'exec exec $term -e $homebin/tinbo'
-#exec --no-startup-id i3-msg 'exec thunderbird'
-#exec --no-startup-id i3-msg 'exec exec $term -e htop'
-#exec --no-startup-id i3-msg 'exec exec $term -e mocp'
-
-# bumblebee-status
-# bar {
-#	font xft:Cantarell 12
-#	position bottom
-#	tray_output none
-#	status_command bumblebee-status -m nic disk:root cpu memory battery pasink pasource brightness date time -p root.path=/ time.format="%H:%M CW %V" date.format="%a, %b %d %Y" -t iceberg
-#}
+## network manager applet
+exec --no-startup-id nm-applet
+## bluetooth applet
+exec --no-startup-id blueman-applet
 
 bar {
 	font xft:Cantarell, FontAwesome 12
 	position bottom
-	tray_output none
-	status_command $HOME/bin/i3status-rs $HOME/.config/i3/status.toml
+	tray_output primary
+	status_command $HOME/.local/bin/i3status-rs $HOME/.config/i3/status.toml
 	colors {
         separator #666666
         background #222222
