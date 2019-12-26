@@ -37,6 +37,7 @@ options cryptdevice=UUID=[UUID] root=/dev/mapper/luks_root rw acpi\_rev\_overrid
 - ./yaourt.sh
 - ./software\_from\_yaourt.sh
 - ./snap.sh
+- betterlockscreen -u ~/Pictures/desktop.jpg
 
 ## Disable dicrete GPU
 
