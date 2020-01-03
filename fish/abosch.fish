@@ -53,6 +53,7 @@ abbr fe "$EDITOR (cd ~/files && ls ~/files/ | dmenu -l 30)"
 abbr j "java"
 abbr jj "java -jar"
 abbr jv "java -version"
+alias groovy groovyclient
 abbr fixpacman "rm /var/lib/pacman/db.lck"
 
 # installer

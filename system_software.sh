@@ -19,3 +19,8 @@ makepkg -si
 sudo systemctl enable --now snapd.socket
 sudo ln -s /var/lib/snapd/snap /snap
 
+echo "Installing micro"
+git clone https://github.com/zyedidia/micro
+cd micro
+make build
+sudo mv micro /usr/local/bin

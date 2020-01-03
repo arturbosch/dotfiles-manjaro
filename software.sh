@@ -13,10 +13,10 @@ echo "Installing archive extract tools"
 sudo pacman -S xarchiver p7zip zip unzip unrar
 
 echo "Installing browser and mail"
-sudo pacman -S firefox thunderbird
+sudo pacman -S firefox evolution gnome-keyring
 
 echo "Installing software"
-sudo pacman -S lsof git youtube-dl htop udisks2 wget fuse2 alacritty exa ripgrep fd neofetch tokei nnn fzf udiskie ntfs-3g lxappearance lxrandr tig xdg-utils alsa-utils moc findutils rofi feh redshift powertop tlp pcmanfm iw compton dunst evince viewnior openssh openvpn perf meld tk tcl gdb awesome-terminal-fonts ttf-font-awesome blueman bluez-utils celluloid time
+sudo pacman -S lsof git youtube-dl htop udisks2 wget fuse2 alacritty exa ripgrep fd neofetch tokei nnn fzf udiskie ntfs-3g lxappearance lxrandr tig xdg-utils alsa-utils moc findutils rofi feh redshift powertop tlp pcmanfm iw compton dunst evince viewnior openssh openvpn perf meld tk tcl gdb awesome-terminal-fonts ttf-font-awesome blueman bluez-utils celluloid time xclip
 
 echo "Installing sound"
 sudo pacman -S pulseaudio pavucontrol pamixer alsa-plugins pulseaudio-alsa
