@@ -24,3 +24,12 @@ git clone https://github.com/zyedidia/micro
 cd micro
 make build
 sudo mv micro /usr/local/bin
+
+echo "Installing betterlockscreen"
+git clone https://github.com/pavanjadhaw/betterlockscreen.git
+cd betterlockscreen
+cp betterlockscreen ~/.local/bin/
+sudo cp system/betterlockscreen@.service /etc/systemd/system/
+sudo systemctl enable betterlockscreen@artur
+cd ~/.dotfiles
+betterlockscreen -u ./desktop.jpg

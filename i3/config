@@ -289,7 +289,7 @@ bindsym $mod+slash exec --no-startup-id blurlock
 
 # Autostart applications
 ## wallpaper
-exec_always --no-startup-id feh --bg-fill $HOME/Pictures/desktop.jpg
+exec_always --no-startup-id feh --bg-fill $HOME/.dotfiles/desktop.jpg
 ## safe battery time
 exec --no-startup-id i3-msg 'workspace $ws3; exec exec $term -e "$homebin/power.sh"
 # exec --no-startup-id gksu tlp start

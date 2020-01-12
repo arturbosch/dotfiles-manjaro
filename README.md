@@ -36,8 +36,6 @@ options cryptdevice=UUID=[UUID] root=/dev/mapper/luks_root rw acpi\_rev\_overrid
 - ./system\_software.sh
 - ./yaourt.sh
 - ./software\_from\_yaourt.sh
-- ./snap.sh
-- betterlockscreen -u ~/Pictures/desktop.jpg
 
 ## Disable dicrete GPU
 
@@ -94,3 +92,7 @@ http://localhost:631/admin
 - sudo mkdir /boot/EFI/Dell/Bios
 - sudo mv ~/Downloads/XPS\_15...exe /boot/EFI/Dell/Bios
 - Restart and Install Bios Update
+
+## Credits
+
+- `desktop.jpg` - Photo by Cassie Boca on Unsplash - https://unsplash.com/photos/gFyy2Po7T-k
