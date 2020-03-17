@@ -6,7 +6,7 @@ set -Ux JAVA_HOME $HOME/.sdkman/candidates/java/current
 set -Ux JENKINS_HOME /var/lib/jenkins
 
 ## add application paths
-set PATH $JAVA_HOME/bin $HOME/bin $HOME/.local/bin $HOME/.yarn/bin $HOME/.gem/ruby/2.6.0/bin $PATH
+set PATH $JAVA_HOME/bin $HOME/bin $HOME/.local/bin $HOME/.yarn/bin $HOME/.gem/ruby/2.7.0/bin $PATH
 
 set SSH_KEY_PTH $HOME/.ssh/rsa_id
 
@@ -33,7 +33,7 @@ abbr gl tig
 if test (uname -a | grep 'Ubuntu')
     alias fd fdfind
 end
-abbr loc "tokei -f --sort=lines"
+abbr loc "tokei --sort=lines"
 abbr md "mkdir -pv"
 abbr rd "rm -R"
 abbr nf "clear && neofetch"
@@ -82,6 +82,9 @@ alias dl "youtube-dl -f bestaudio --extract-audio --audio-format mp3 --audio-qua
 alias jshell "$JAVA_HOME/bin/jshell"
 alias mm "java -jar -Xmx50m ~/tools/mm.jar"
 alias mmx "java -XX:TieredStopAtLevel=1 -XX:CICompilerCount=1 -XX:+UseSerialGC -Xshare:on -XX:-UsePerfData -Xmx20m -Xms20m -jar ~/tools/mm.jar"
+alias gbt "sh $HOME/git/repos/gbt/build/distributions/gbt/bin/gbt"
+
+alias zip_git "zip -r git-with-excludes.zip git/ -x '**/node_modules/**' '**/build/**' '**/.idea/**' 'git/test/**' '**/target/**' '**/.gradle/**' '**/out/production/**' '**/out/test/**' '**/gbt_build/**'"
 
 # ruby
 # echo "gem: --user-install" >> ~/.gemrc
