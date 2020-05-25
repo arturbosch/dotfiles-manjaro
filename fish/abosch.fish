@@ -82,7 +82,8 @@ alias dl "youtube-dl -f bestaudio --extract-audio --audio-format mp3 --audio-qua
 alias jshell "$JAVA_HOME/bin/jshell"
 alias mm "java -jar -Xmx50m ~/tools/mm.jar"
 alias mmx "java -XX:TieredStopAtLevel=1 -XX:CICompilerCount=1 -XX:+UseSerialGC -Xshare:on -XX:-UsePerfData -Xmx20m -Xms20m -jar ~/tools/mm.jar"
-alias gbt "sh $HOME/git/repos/gbt/build/distributions/gbt/bin/gbt"
+alias gbt "java -jar -Xmx128m -Xms128m $HOME/tools/gbt-1.0.jar"
+alias dgbt "sh $HOME/git/repos/gbt/build/distributions/gbt/bin/gbt"
 
 alias zip_git "zip -r git-with-excludes.zip git/ -x '**/node_modules/**' '**/build/**' '**/.idea/**' 'git/test/**' '**/target/**' '**/.gradle/**' '**/out/production/**' '**/out/test/**' '**/gbt_build/**'"
 
