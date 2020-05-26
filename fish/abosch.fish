@@ -6,7 +6,7 @@ set -Ux JAVA_HOME $HOME/.sdkman/candidates/java/current
 set -Ux JENKINS_HOME /var/lib/jenkins
 
 ## add application paths
-set PATH $JAVA_HOME/bin $HOME/bin $HOME/.local/bin $HOME/.yarn/bin $HOME/.gem/ruby/2.7.0/bin $HOME/go/bin $PATH
+set PATH $JAVA_HOME/bin $HOME/bin $HOME/.local/bin $HOME/.yarn/bin $HOME/.gem/ruby/2.7.0/bin $HOME/go/bin $HOME/.cargo/bin $PATH
 
 set SSH_KEY_PTH $HOME/.ssh/rsa_id
 
