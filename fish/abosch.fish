@@ -19,7 +19,7 @@ set VISUAL nvim
 abbr e $EDITOR
 abbr vim nvim
 abbr vi nvim
-alias brave-browser=brave
+abbr pw "sudo $HOME/bin/power.sh"
 
 ## config shortcuts
 abbr ef "$EDITOR $HOME/.dotfiles/fish/abosch.fish"
