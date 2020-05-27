@@ -2,6 +2,7 @@ function fish_greeting
 end
 
 # paths
+set -Ux XDG_CONFIG_HOME $HOME/.config
 set -Ux JAVA_HOME $HOME/.sdkman/candidates/java/current
 set -Ux JENKINS_HOME /var/lib/jenkins
 
@@ -27,6 +28,7 @@ abbr ei "$EDITOR $HOME/.dotfiles/i3/config"
 abbr ev "$EDITOR $HOME/.dotfiles/nvim/init.vim"
 abbr eg "$EDITOR $HOME/.dotfiles/.gitconfig"
 abbr ecoc "$EDITOR $HOME/.dotfiles/nvim/coc-settings.json"
+abbr ek "$EDITOR $HOME/.dotfiles/kak/kakrc"
 
 ## other shortcuts
 abbr gl tig
